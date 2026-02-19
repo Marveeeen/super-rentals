@@ -1,12 +1,10 @@
-import { pageTitle } from 'ember-page-title';
-import { WelcomePage } from 'ember-welcome-page';
+import NavBar from 'super-rentals/components/nav-bar';
 
 <template>
-  {{pageTitle "SuperRentals"}}
-
-  {{outlet}}
-
-  {{! The following component displays Ember's default welcome message. }}
-  <WelcomePage @extension="gjs" />
-  {{! Feel free to remove this! }}
+  <div class="container">
+    <NavBar />
+    <div class="body">
+      {{outlet}}
+    </div>
+  </div>
 </template>
