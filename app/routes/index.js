@@ -7,7 +7,6 @@ export default class IndexRoute extends Route {
 
   async model() {
     const { content } = await this.store.request(query('rental'));
-    console.log(content);
     return content.data;
   }
 }
