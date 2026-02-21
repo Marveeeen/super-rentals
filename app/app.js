@@ -6,6 +6,7 @@ import loadInitializers from 'ember-load-initializers';
 import config from 'super-rentals/config/environment';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import setupInspector from '@embroider/legacy-inspector-support/ember-source-4.12';
+import { setBuildURLConfig } from '@warp-drive/utilities/json-api';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
@@ -19,3 +20,7 @@ export default class App extends Application {
 }
 
 loadInitializers(App, config.modulePrefix, compatModules);
+
+setBuildURLConfig({
+  namespace: 'api',
+});

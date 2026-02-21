@@ -1,21 +1,13 @@
 import Route from '@ember/routing/route';
-const COMMUNITY_CATEGORIES = ['Condo', 'Estate', 'Apartment'];
+import { service } from '@ember/service';
+import { query } from '@warp-drive/utilities/json-api';
 
 export default class IndexRoute extends Route {
+  @service store;
+
   async model() {
-    // eslint-disable-next-line warp-drive/no-external-request-patterns
-    let response = await fetch('/api/rentals.json');
-    let { data } = await response.json();
-
-    return data.map((model) => {
-      const { id, attributes } = model;
-      let type = 'Standalone';
-
-      if (COMMUNITY_CATEGORIES.includes(attributes.category)) {
-        type = 'Community';
-      }
-
-      return { id, type, ...attributes };
-    });
+    const { content } = await this.store.request(query('rental'));
+    console.log(content);
+    return content.data;
   }
 }
